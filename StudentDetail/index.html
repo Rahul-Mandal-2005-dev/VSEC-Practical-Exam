@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        input {
+            margin: 5px;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px;
+            background-color: lightgreen;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Student Marks Management</h2>
+
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="roll" placeholder="Roll Number">
+    <br>
+
+    <input type="number" id="m1" placeholder="Subject 1">
+    <input type="number" id="m2" placeholder="Subject 2">
+    <input type="number" id="m3" placeholder="Subject 3">
+    <br>
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <h3>Student Records</h3>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Roll No.</th>
+            <th>Total</th>
+            <th>Percentage</th>
+        </tr>
+        <tbody id="records"></tbody>
+    </table>
+
+    <h3 id="topper">Topper: None</h3>
+
+    <script>
+        let students = [];
+
+        function addStudent() {
+            let name = document.getElementById("name").value;
+            let roll = document.getElementById("roll").value;
+
+            let m1 = Number(document.getElementById("m1").value);
+            let m2 = Number(document.getElementById("m2").value);
+            let m3 = Number(document.getElementById("m3").value);
+
+            if (name == "" || roll == "" ||
+                document.getElementById("m1").value == "" ||
+                document.getElementById("m2").value == "" ||
+                document.getElementById("m3").value == "" ||
+                m1 < 0 || m1 > 100 ||
+                m2 < 0 || m2 > 100 ||
+                m3 < 0 || m3 > 100) {
+                alert("Enter valid details and marks (0-100)");
+                return;
+            }
+
+            let total = m1 + m2 + m3;
+            let percentage = total / 3;
+
+            let student = {
+                name: name,
+                roll: roll,
+                total: total,
+                percentage: percentage
+            };
+
+            students.push(student);
+
+            showRecords();
+        }
+
+        function showRecords() {
+            let table = document.getElementById("records");
+            table.innerHTML = "";
+
+            let topper = students[0];
+
+            for (let s of students) {
+                table.innerHTML +=
+                    "<tr><td>" + s.name +
+                    "</td><td>" + s.roll +
+                    "</td><td>" + s.total +
+                    "</td><td>" + s.percentage.toFixed(2) +
+                    "%</td></tr>";
+
+                if (s.total > topper.total) {
+                    topper = s;
+                }
+            }
+
+            document.getElementById("topper").innerHTML =
+                "Topper: " + topper.name +
+                " (" + topper.percentage.toFixed(2) + "%)";
+        }
+    </script>
+
+</body>
+</html>

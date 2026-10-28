@@ -1,0 +1,46 @@
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+li{
+    padding: 2px;
+    margin: 10px;
+}
+caption{
+    color: aqua;
+}
+thead
+{
+    background-color: red; 
+}
+table{
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th{
+
+    border: 2px solid black;
+}
+td{
+
+    border: 2px solid black;
+    text-align: center;
+}
+thead{
+    border: 2px solid black;
+    text-align: center;
+}
+tbody{
+    border: 2px solid black;
+
+}
+.l{
+    background-color: aqua;
+}
+nav{
+    margin-left: 200px;
+}
+nav a{
+    padding-left: 10px ;
+}
